@@ -39,7 +39,8 @@ data = df.to_numpy()
 
 #mapeando genero (male,female) pra (0,1)
 if 'Sex' in variaveis:
-    data[: , 1] = [1 if (data[i , 1] == 'male') else 0 for i in range (len(data[: ,1]))]
+    col_idx = variaveis.index('Sex')  # encontra em qual coluna está 'Sex'
+    data[:, col_idx] = [1 if x == 'male' else 0 for x in data[:, col_idx]]
 
 
 
@@ -155,6 +156,6 @@ df_resultado = pd.DataFrame({
 })
 
 # salvar csv
-df_resultado.to_csv('resultado_previsto3.csv', index=False)
+df_resultado.to_csv('resultado_previsto_tudo.csv', index=False)
 
 print("Tempo de execução:", tempo_execucao, "segundos")
